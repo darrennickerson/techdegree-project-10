@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
 import CourseMenu from '../components/CourseMenu';
 import { userContext } from '../context/Context';
@@ -32,10 +32,19 @@ const CourseDetail = () => {
         <h2>Loading....</h2>
       ) : (
         <>
-          {user && course.User.id === user.id && (
-            <CourseMenu courseId={course.id} encodedUser={user.encodedCreds} />
-          )}
-
+          <div className="actions--bar">
+            <div className="wrap">
+              {user && course.User.id === user.id && (
+                <CourseMenu
+                  courseId={course.id}
+                  encodedUser={user.encodedCreds}
+                />
+              )}
+              <Link className="button button-secondary" to="/">
+                Return to List
+              </Link>
+            </div>
+          </div>
           <div className="wrap">
             <form>
               <h2>Course Detail</h2>

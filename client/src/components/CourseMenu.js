@@ -29,19 +29,14 @@ const CourseMenu = ({ courseId, encodedUser }) => {
     }
   };
   return (
-    <div className="actions--bar">
-      <div className="wrap">
-        <Link className="button" to={`/courses/${courseId}/update`}>
-          Update Course
-        </Link>
-        <Link className="button" onClick={handleDelete} to="/">
-          Delete Course
-        </Link>
-        <Link className="button button-secondary" to="/">
-          Return to List
-        </Link>
-      </div>
-    </div>
+    <>
+      <Link className="button" to={`/courses/${courseId}/update`}>
+        Update Course
+      </Link>
+      <Link className="button" onClick={handleDelete} to="/">
+        Delete Course
+      </Link>
+    </>
   );
 };
 
