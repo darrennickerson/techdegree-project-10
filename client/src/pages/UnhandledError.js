@@ -1,4 +1,4 @@
-const Error = () => {
+const UnhandledError = () => {
   return (
     <div className="wrap">
       <h2>Error</h2>
@@ -7,4 +7,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default UnhandledError;

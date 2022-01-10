@@ -14,10 +14,9 @@ import UserSignIn from './pages/UserSignIn';
 import UserSignUp from './pages/UserSignUp';
 import Forbidden from './pages/Forbidden';
 import NoRoute from './pages/NoRoute';
-import Error from './pages/Error';
+import UnhandledError from './pages/UnhandledError';
 
 // Components
-//import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 
 function App() {
@@ -48,7 +47,7 @@ function App() {
           <Route path="/signin" element={<UserSignIn />} />
           <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/forbidden" element={<Forbidden />} />
-          <Route path="/error" element={<Error />} />
+          <Route path="/error" element={<UnhandledError />} />
           <Route path="*" element={<NoRoute />} />
         </Routes>
       </main>
