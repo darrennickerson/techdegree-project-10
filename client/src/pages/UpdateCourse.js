@@ -13,22 +13,24 @@ const UpdateCourse = () => {
   const user = value.user;
 
   useEffect(() => {
+    // return the requested course
     axios
       .get(`http://localhost:5000/api/courses/${courseId.id}`)
       .then((response) => {
-        if (user.id !== response.data.User.id) {
-          window.location.assign('/forbidden');
+        if (response.data === null) {
+          window.location.assign('/notfound');
         } else {
           setCourse(response.data);
           setIsLoading(false);
         }
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
       });
   }, [courseId, user.id]);
 
   const handleSubmit = (e) => {
+    //When the user submits the form with the new data update the course
     e.preventDefault();
     const data = {
       title: e.target.courseTitle.value,
@@ -36,7 +38,7 @@ const UpdateCourse = () => {
       estimatedTime: e.target.estimatedTime.value,
       materialsNeeded: e.target.materialsNeeded.value,
     };
-    console.log(data);
+
     axios
       .put(`courses/${courseId.id}`, data, {
         headers: {
