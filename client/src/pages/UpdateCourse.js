@@ -17,6 +17,7 @@ const UpdateCourse = () => {
     axios
       .get(`http://localhost:5000/api/courses/${courseId.id}`)
       .then((response) => {
+        // make sure the current user owns the course
         if (user.id !== response.data.User.id) {
           window.location.assign('/forbidden');
         }

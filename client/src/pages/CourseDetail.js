@@ -13,6 +13,7 @@ const CourseDetail = () => {
   const user = value.user;
   const courseId = useParams();
 
+  //Displays the course details, makes sure that the data is done being loaded
   useEffect(() => {
     axios
       .get(`courses/${courseId.id}`)

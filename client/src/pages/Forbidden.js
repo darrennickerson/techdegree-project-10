@@ -1,4 +1,5 @@
 const Forbidden = () => {
+  // displays when a user is not authorized to view
   return (
     <div className="wrap">
       <h2>Forbidden</h2>

@@ -5,6 +5,8 @@ import Cookies from 'js-cookie';
 
 const UserSignUp = () => {
   const [valErrors, setValErrors] = useState([]);
+
+  //Form to create a new user. Then automatically logs them in
   const handleSignUp = (e) => {
     e.preventDefault();
     let data = {
@@ -25,7 +27,7 @@ const UserSignUp = () => {
           data.encodedCreds = encodedCredentials;
           delete data['password'];
           Cookies.set('authenticatedUser', JSON.stringify(data), {
-            expires: 7,
+            expires: 1,
           });
 
           window.location.assign('/');
