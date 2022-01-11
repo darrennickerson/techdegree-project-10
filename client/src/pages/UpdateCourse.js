@@ -18,15 +18,15 @@ const UpdateCourse = () => {
       .get(`http://localhost:5000/api/courses/${courseId.id}`)
       .then((response) => {
         // make sure the current user owns the course
+        if (response.data === null) {
+          window.location.assign('/notfound');
+        }
         if (user.id !== response.data.User.id) {
           window.location.assign('/forbidden');
         }
-        if (response.data === null) {
-          window.location.assign('/notfound');
-        } else {
-          setCourse(response.data);
-          setIsLoading(false);
-        }
+
+        setCourse(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
