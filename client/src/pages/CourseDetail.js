@@ -22,7 +22,7 @@ const CourseDetail = () => {
         setisLoading(false);
       })
       .catch((error) => {
-        window.location.assign('/error');
+        window.location.assign('/notfound');
       });
   }, [courseId]);
 

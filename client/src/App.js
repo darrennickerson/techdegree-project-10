@@ -13,11 +13,12 @@ import UpdateCourse from './pages/UpdateCourse';
 import UserSignIn from './pages/UserSignIn';
 import UserSignUp from './pages/UserSignUp';
 import Forbidden from './pages/Forbidden';
-import NoRoute from './pages/NoRoute';
+import NotFound from './pages/NotFound';
 import UnhandledError from './pages/UnhandledError';
 
 // Components
 import Header from './components/Header';
+import UserSignOut from './pages/UserSignOut';
 
 function App() {
   axios.defaults.baseURL = 'http://localhost:5000/api/';
@@ -46,9 +47,10 @@ function App() {
           <Route path="/signup" element={<UserSignUp />} />
           <Route path="/signin" element={<UserSignIn />} />
           <Route path="/courses/:id" element={<CourseDetail />} />
+          <Route path="/signout" element={<UserSignOut />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/forbidden" element={<Forbidden />} />
           <Route path="/error" element={<UnhandledError />} />
-          <Route path="*" element={<NoRoute />} />
         </Routes>
       </main>
     </div>

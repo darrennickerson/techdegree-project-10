@@ -69,7 +69,15 @@ const CreateCourse = () => {
         <button className="button" type="submit">
           Create Course
         </button>
-        <button className="button button-secondary">Cancel</button>
+        <button
+          className="button button-secondary"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.assign('/');
+          }}
+        >
+          Cancel
+        </button>
       </form>
     </div>
   );

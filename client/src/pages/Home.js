@@ -1,12 +1,9 @@
 import Course from '../components/Course';
 import CreateCourseButton from '../components/CreateCourseButton';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { userContext } from '../context/Context';
 
 const Home = () => {
-  const value = useContext(userContext);
-  const user = value.user;
   const [courses, setCourses] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,7 +27,7 @@ const Home = () => {
           return <Course key={course.id} data={course} />;
         })
       )}
-      {user ? <CreateCourseButton /> : ''}
+      <CreateCourseButton />
     </div>
   );
 };

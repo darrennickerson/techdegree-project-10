@@ -131,33 +131,18 @@ router.post(
 router.put(
   '/courses/:id',
   authenticateUser,
-  asyncHandler(async (req, res) => {
-    const courseId = req.params.id;
-    const course = await Courses.findByPk(courseId, {
-      include: [
-        {
-          model: Users,
-          attributes: ['id', 'firstName', 'lastName', 'emailAddress'],
-        },
-      ],
-    });
-    const user = req.currentUser;
+  asyncHandler(async (req, res, next) => {
     try {
-      if (user.emailAddress === course.User.emailAddress) {
-        if (
-          (await req.body.constructor) === Object &&
-          Object.keys(req.body).length === 0
-        ) {
-          res.status(500).send({ error: "Can't be empty" });
-        } else {
-          const courseObj = course.update(req.body);
-          res.status(204).json(courseObj);
-        }
+      const user = req.currentUser;
+      const course = await Courses.findByPk(req.params.id);
+      if (course && course.userId === user.id) {
+        await course.update(req.body);
+        res.status(204).end();
       } else {
-        res.send('Not Authenticated', 403);
+        const err = createError(403, 'Not Authorized.');
+        next(err);
       }
     } catch (error) {
-      console.log(error.name);
       if (
         error.name === 'SequelizeValidationError' ||
         error.name === 'SequelizeUniqueConstraintError'

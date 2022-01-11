@@ -1,4 +1,4 @@
-const NoRoute = () => {
+const NotFound = () => {
   return (
     <div className="wrap">
       <h2>Not Found</h2>
@@ -7,4 +7,4 @@ const NoRoute = () => {
   );
 };
 
-export default NoRoute;
+export default NotFound;

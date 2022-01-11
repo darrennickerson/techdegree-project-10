@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { userContext } from '../context/Context';
+import ValidationErrors from '../components/ValidationErrors';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const UpdateCourse = () => {
   const [course, setCourse] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [valErrors, setValErrors] = useState([]);
   const courseId = useParams();
   const value = useContext(userContext);
   const user = value.user;
@@ -34,6 +36,7 @@ const UpdateCourse = () => {
       estimatedTime: e.target.estimatedTime.value,
       materialsNeeded: e.target.materialsNeeded.value,
     };
+    console.log(data);
     axios
       .put(`courses/${courseId.id}`, data, {
         headers: {
@@ -41,11 +44,10 @@ const UpdateCourse = () => {
         },
       })
       .then((response) => {
-        console.log(response);
-        window.location.assign(`/course_detail/${courseId.id}`);
+        window.location.assign(`/courses/${courseId.id}`);
       })
       .catch((error) => {
-        console.error(error);
+        setValErrors(error.response.data.errors);
       });
   };
   return (
@@ -55,6 +57,11 @@ const UpdateCourse = () => {
         <h2>Loading....</h2>
       ) : (
         <>
+          {valErrors && valErrors.length > 0 ? (
+            <ValidationErrors errors={valErrors} />
+          ) : (
+            ''
+          )}
           <form onSubmit={handleSubmit}>
             <div className="main--flex">
               <div>
