@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { userContext } from '../context/Context';
 
+//Basic form that uses signIn context to sign the user in
 const UserSignIn = () => {
   const value = useContext(userContext);
   const signIn = value.actions.signIn;

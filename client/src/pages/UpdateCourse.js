@@ -17,6 +17,9 @@ const UpdateCourse = () => {
     axios
       .get(`http://localhost:5000/api/courses/${courseId.id}`)
       .then((response) => {
+        if (user.id !== response.data.User.id) {
+          window.location.assign('/forbidden');
+        }
         if (response.data === null) {
           window.location.assign('/notfound');
         } else {

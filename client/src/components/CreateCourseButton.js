@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 const CreateCourseButton = () => {
+  //simple button component for adding new course STATELESS
   return (
     <Link className="course--module course--add--module" to="courses/create">
       <span className="course--add--title">

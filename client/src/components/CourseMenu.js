@@ -1,31 +1,17 @@
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-const CourseMenu = ({ courseId, encodedUser }) => {
+import { useContext } from 'react';
+import { userContext } from '../context/Context';
+
+const CourseMenu = ({ courseId }) => {
+  // Small menu in course menu for deleting and updateing courses. when logged in
+  const { signOut } = useContext(userContext);
   const handleDelete = () => {
     const confirm = window.confirm('Are you sure you want to delete this?');
 
     if (confirm === false) {
       return;
     } else {
-      axios
-        .delete(`courses/${courseId}`, {
-          headers: {
-            Authorization: `Basic ${encodedUser}`,
-          },
-        })
-        .then((response) => {
-          window.location.assign(`/`);
-        })
-        .catch((error) => {
-          if (error.response) {
-            if (error.response.status === 401) {
-              window.location.assign('/forbidden');
-            } else {
-              window.location.assign('/error');
-            }
-          }
-          console.error(error);
-        });
+      signOut();
     }
   };
   return (
